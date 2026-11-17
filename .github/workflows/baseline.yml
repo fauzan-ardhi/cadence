@@ -1,3 +1,4 @@
+
 name: Cadence Baseline Test
 
 on:
@@ -10,12 +11,14 @@ jobs:
   interpreter-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout source
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-go@v5
+      - name: Setup Go
+        uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
           cache: true
 
-            - name: Run capability baseline tests
+      - name: Run capability baseline tests
         run: go test -p=1 ./runtime -run '^TestRuntimeCapability_borrowAndCheck$' -count=1
