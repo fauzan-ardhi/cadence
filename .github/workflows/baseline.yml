@@ -17,5 +17,5 @@ jobs:
           go-version-file: go.mod
           cache: true
 
-      - name: Run capability baseline tests
-        run: go test -p=1 ./interpreter -run '^TestInterpretIDCapability' -count=1
+            - name: Run capability baseline tests
+        run: go test -p=1 ./runtime -run '^TestRuntimeCapability_borrowAndCheck$' -count=1
