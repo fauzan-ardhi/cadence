@@ -1,0 +1,21 @@
+name: Cadence Baseline Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - ci/baseline-test
+
+jobs:
+  interpreter-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Run capability baseline tests
+        run: go test -p=1 ./interpreter -run '^TestInterpretIDCapability' -count=1
